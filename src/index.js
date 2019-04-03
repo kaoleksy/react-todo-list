@@ -1,29 +1,67 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { TodoList } from './TodoList';
-import { TodoInput } from './TodoInput';
-import { TodoItem } from './TodoItem';
+import { TodoList } from "./TodoList";
+import { TodoInput } from "./TodoInput";
+import { TodoItem } from "./TodoItem";
 
 import "./styles.css";
 
 class App extends React.Component {
-  state = {
-    todos: ["item1", "item2", "item3"]
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: [
+        { id: 1, text: "Task1" },
+        { id: 2, text: "Task2" },
+        { id: 3, text: "Task3" }
+      ]
+    };
+  }
+
+  onDeleteItem = id => {
+    console.log(id);
+    let updatedTodos = this.state.todos.filter(item => item.id !== id);
+    this.setState({
+      todos: updatedTodos
+    });
+    console.log("deleted" + id);
+  };
+
+  onAddItem = item => {
+    console.log("add item");
+    if (item !== "") {
+      let newTodo = {};
+      newTodo.id = this.state.todos.length + 1;
+      newTodo.text = item;
+      this.setState({
+        todos: [...this.state.todos, newTodo]
+      });
+      console.log(this.state.todos);
+      console.log(typeof this.state.todos);
+    }
   };
 
   render() {
     return (
-      <div>
-        <TodoInput 
-          onAddItem={item => {
-            (item != '') ? this.setState({ todos: this.state.todos.concat(item) }) : '';        
-          }}
-        />
-        <TodoList>
-          {this.state.todos.map(todo => ( 
-            <TodoItem text={todo} />
-          ))}
-        </TodoList>
+      <div className="container">
+        <div className="row">
+          <div className="col-8 offset-2">
+            <TodoInput onAddItem={this.onAddItem} />
+            <div className="row">
+              <div className="col">
+                <TodoList>
+                  {this.state.todos.map(todo => (
+                    <TodoItem
+                      id={todo.id}
+                      text={todo.text}
+                      onDelete={this.onDeleteItem}
+                    />
+                  ))}
+                </TodoList>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

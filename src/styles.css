@@ -1,4 +1,20 @@
 .App {
   font-family: sans-serif;
-  text-align: center;
+}
+
+.item {
+  margin-bottom: 10px;
+}
+
+.todo-input {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.add-btn {
+  margin-left: 10px;
+}
+
+.delete-button {
+  float: right;
 }
