@@ -7,7 +7,7 @@
 }
 
 .todo-input {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
@@ -17,4 +17,12 @@
 
 .delete-button {
   float: right;
+}
+
+.main-header {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 48px;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
 }

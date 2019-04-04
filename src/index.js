@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { TodoList } from "./TodoList";
 import { TodoInput } from "./TodoInput";
 import { TodoItem } from "./TodoItem";
+import { TodoHeader } from "./TodoHeader";
 
 import "./styles.css";
 
@@ -41,11 +42,14 @@ class App extends React.Component {
     }
   };
 
+  ifDone = id => {};
+
   render() {
     return (
       <div className="container">
         <div className="row">
           <div className="col-8 offset-2">
+            <TodoHeader header="Todo List" />
             <TodoInput onAddItem={this.onAddItem} />
             <div className="row">
               <div className="col">
@@ -55,6 +59,7 @@ class App extends React.Component {
                       id={todo.id}
                       text={todo.text}
                       onDelete={this.onDeleteItem}
+                      ifDone={this.ifDone}
                     />
                   ))}
                 </TodoList>
